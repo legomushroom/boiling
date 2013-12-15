@@ -8,7 +8,8 @@ h =
 # , 10
 
 
-$fire = $('#fire-path')
+$fire 	= $('#fire-path')
+$cover 	= $('#cover')
 
 top 		= 30.808
 bottom 	= 27.988
@@ -28,6 +29,11 @@ setInterval =>
 	buf = top
 	top = bottom
 	bottom = buf
+, 250
 
-, 100
+setInterval =>
+
+	$cover.attr 'transform', "rotate(#{h.getRand(-4,4)},16,2)"
+
+, 20
 

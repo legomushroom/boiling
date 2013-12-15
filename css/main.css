@@ -3,7 +3,6 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-
 body,
 html {
   width: 100%;
@@ -12,4 +11,10 @@ html {
   padding: 0;
   overflow: hidden;
   font-family: monospace;
+}
+svg path,
+svg line,
+svg polyline {
+  stroke-linejoin: round;
+  stroke-linecap: round;
 }
