@@ -17,4 +17,5 @@ svg line,
 svg polyline {
   stroke-linejoin: round;
   stroke-linecap: round;
+  stroke-width: 1px;
 }
