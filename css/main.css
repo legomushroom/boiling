@@ -9,13 +9,22 @@ html {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
   font-family: monospace;
+}
+.icon {
+  background-color: #f59995;
+  width: 80px;
+  height: 80px;
+  stroke: #fff;
+  padding: 16px;
+  border-radius: 50%;
+}
+.icon svg {
+  width: 100%;
+  height: 100%;
 }
 svg path,
 svg line,
 svg polyline {
-  stroke-linejoin: round;
-  stroke-linecap: round;
   stroke-width: 1px;
 }

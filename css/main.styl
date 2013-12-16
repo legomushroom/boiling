@@ -7,13 +7,20 @@ body, html
 	rect 100%
 	margin 0
 	padding 0
-	overflow hidden
 	font-family monospace
+gs = 8px
+.icon
+	background-color #f59995
+	rect 10*gs
+	stroke white
+	padding 2*gs
+	border-radius 50%
 
-
+	svg
+		rect 100%
 
 svg
 	path, line, polyline
-		stroke-linejoin round
-		stroke-linecap 	round
+		// stroke-linejoin round
+		// stroke-linecap 	round
 		stroke-width: 1px
