@@ -11,16 +11,17 @@
               };
     })();
 ;
-  var $cover, $fire, $water, bottom, currBottom, currTop, dir1, dir2, main, step, step1, stepCount, top, vector1, vector2, waterHeight, waterY,
-    _this = this;
+  var _this = this;
 
-  main = {
+  window.boiling = {
     init: function() {
       this.fire = this.$('fire-boiling');
       this.cover = this.$('cover-boiling');
       this.water = this.$('water-boiling');
+      this.text = this.$('text');
       this.waterHeight = parseInt(this.water.getAttribute('height'), 10) + .75;
       this.waterY = parseInt(this.water.getAttribute('y'), 10);
+      this.waterPercent = this.waterHeight / 100;
       this.fireVariables();
       return this.animationLoop(null, this);
     },
@@ -30,7 +31,7 @@
       this.top = 30.808;
       this.bottom = 27.988;
       vector = this.top - this.bottom;
-      stepCount = 8;
+      stepCount = 6;
       this.step = vector / stepCount;
       this.currTop = this.bottom;
       this.currBottom = this.top;
@@ -40,8 +41,22 @@
     $: function(id) {
       return document.getElementById(id);
     },
+    setProgress: function(n) {
+      var amount;
+
+      if (n < 0 || n > 100) {
+        return;
+      }
+      amount = this.waterPercent * n;
+      this.water.setAttribute('height', this.waterHeight - amount);
+      this.water.setAttribute('y', this.waterY + amount);
+      return this.text.innerHTML = "" + n + "%";
+    },
     getRand: function(min, max) {
       return Math.floor((Math.random() * ((max + 1) - min)) + min);
+    },
+    animateCover: function() {
+      return this.cover.setAttribute('transform', "rotate(" + (this.getRand(-4, 6)) + ",16,2)");
     },
     animateFire: function() {
       if (!this.direction1) {
@@ -73,7 +88,8 @@
       return this.fire.setAttribute('points', "23," + (this.top - 1) + " \n21.804," + this.currTop + "\n18.985," + this.currBottom + "\n16.134," + this.currTop + "\n13.284," + this.currBottom + "\n10.404," + this.currTop + "\n9," + (this.top - 1) + "\n");
     },
     animate: function() {
-      return this.animateFire();
+      this.animateFire();
+      return this.animateCover();
     },
     animationLoop: function(time) {
       this.animate();
@@ -81,79 +97,15 @@
     }
   };
 
-  main.init();
+  boiling.init();
 
-  $fire = $('#fire-path');
+  setTimeout(function() {
+    var i;
 
-  $cover = $('#cover');
-
-  $water = $('#water');
-
-  waterHeight = parseInt($water.attr('height'), 10) + .75;
-
-  waterY = parseInt($water.attr('y'), 10);
-
-  step = .05;
-
-  setInterval(function() {
-    waterHeight = waterHeight - step;
-    waterY = waterY + step;
-    $water.attr('y', waterY);
-    return $water.attr('height', waterHeight);
-  }, 20);
-
-  top = 30.808;
-
-  bottom = 27.988;
-
-  vector1 = top - bottom;
-
-  vector2 = bottom - top;
-
-  stepCount = 20;
-
-  step1 = vector1 / stepCount;
-
-  dir1 = false;
-
-  dir2 = false;
-
-  currTop = bottom;
-
-  currBottom = top;
-
-  setInterval(function() {
-    if (!dir1) {
-      if (currTop <= top) {
-        currTop += step1;
-      } else {
-        dir1 = true;
-      }
-    } else {
-      if (currTop >= bottom) {
-        currTop -= step1;
-      } else {
-        dir1 = false;
-      }
-    }
-    if (!dir2) {
-      if (currBottom >= bottom) {
-        currBottom -= step1;
-      } else {
-        dir2 = true;
-      }
-    } else {
-      if (currBottom <= top) {
-        currBottom += step1;
-      } else {
-        dir2 = false;
-      }
-    }
-    return $fire.attr('points', "23," + (top - 1) + " \n21.804," + currTop + "\n18.985," + currBottom + "\n16.134," + currTop + "\n13.284," + currBottom + "\n10.404," + currTop + "\n9," + (top - 1) + "\n");
-  }, 2);
-
-  setInterval(function() {
-    return $cover.attr('transform', "rotate(" + (main.getRand(-4, 4)) + ",16,2)");
-  }, 20);
+    i = 0;
+    return setInterval(function() {
+      return boiling.setProgress(++i);
+    }, 100);
+  }, 3000);
 
 }).call(this);

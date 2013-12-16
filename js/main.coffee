@@ -11,14 +11,16 @@
 `
 
 
-main = 
+window.boiling = 
 	init:->
 		@fire 	= @$ 'fire-boiling'
 		@cover 	= @$ 'cover-boiling'
 		@water 	= @$ 'water-boiling'
+		@text 	= @$ 'text'
 
 		@waterHeight = parseInt(@water.getAttribute('height'), 10) + .75
 		@waterY 		 = parseInt(@water.getAttribute('y'), 10)
+		@waterPercent = @waterHeight/100
 
 		@fireVariables()
 
@@ -31,7 +33,7 @@ main =
 
 		vector = @top - @bottom
 
-		stepCount 	= 8
+		stepCount 	= 6
 		@step 			= vector/stepCount
 
 		@currTop 		= @bottom
@@ -41,8 +43,18 @@ main =
 
 	$:(id)-> document.getElementById id
 
+	setProgress:(n)->
+		if n < 0 or n > 100 then return
+		amount = @waterPercent*n
+		@water.setAttribute 'height', @waterHeight - amount
+		@water.setAttribute 'y', @waterY + amount
+		@text.innerHTML = "#{n}%"
+
 	getRand:(min,max)->
 		Math.floor((Math.random() * ((max + 1) - min)) + min)
+
+	animateCover:->
+		@cover.setAttribute 'transform', "rotate(#{@getRand(-4,6)},16,2)"
 
 	animateFire:->
 		if !@direction1
@@ -79,82 +91,23 @@ main =
 
 	animate:->
 		@animateFire()
+		@animateCover()
 
 	animationLoop:(time)->
 		@animate()
 		requestAnimFrame(@animationLoop.bind(@))
 
-main.init()
+boiling.init()
+
+setTimeout =>
+	i=0
+	setInterval =>
+		boiling.setProgress ++i
+
+	, 100
+
+, 3000
 
 
 
-
-
-
-$fire 	= $('#fire-path')
-$cover 	= $('#cover')
-$water 	= $('#water')
-
-waterHeight = parseInt($water.attr('height'), 10) + .75
-waterY 			= parseInt($water.attr('y'), 10)
-
-step = .05
-setInterval =>
-	waterHeight = waterHeight-step
-	waterY = waterY+step
-	$water.attr 'y', 			waterY
-	$water.attr 'height', waterHeight
-, 20
-
-top 		= 30.808
-bottom 	= 27.988
-
-vector1 = top - bottom
-vector2 = bottom - top
-
-stepCount = 20
-step1 		= vector1/stepCount
-
-dir1 = false
-dir2 = false
-currTop = bottom
-currBottom = top
-setInterval =>
-	if !dir1
-		if currTop <= top
-			currTop += step1
-		else dir1 = true
-	else
-		if currTop >= bottom
-			currTop -= step1
-		else dir1 = false
-
-	if !dir2
-		if currBottom >= bottom
-			currBottom -= step1
-		else dir2 = true
-	else 
-		if currBottom <= top
-			currBottom += step1
-		else dir2 = false
-
-
-	$fire.attr 'points', """
-											
-											23,#{top-1} 
-											21.804,#{currTop}
-											18.985,#{currBottom}
-											16.134,#{currTop}
-											13.284,#{currBottom}
-											10.404,#{currTop}
-											9,#{top-1}
-
-											"""
-, 2
-
-setInterval =>
-
-	$cover.attr 'transform', "rotate(#{main.getRand(-4,4)},16,2)"
-
-, 20
 

@@ -10,14 +10,17 @@ html {
   margin: 0;
   padding: 0;
   font-family: monospace;
+  text-align: center;
+  font-size: 16px;
 }
 .icon {
   background-color: #f59995;
   display: inline-block;
   border-radius: 50%;
-  width: 120px;
-  height: 120px;
+  width: 7.5em;
+  height: 7.5em;
   position: relative;
+  margin-top: 200px;
 }
 .icon .svg-icon {
   width: 50%;
@@ -27,6 +30,14 @@ html {
   top: 50%;
   margin-left: -25%;
   margin-top: -25%;
+}
+.icon .text {
+  margin-top: 2em;
+  color: #f59995;
+  border-radius: 50%;
+  display: inline-block;
+  padding: 0.25em;
+  font-size: 0.75em;
 }
 .svg-icon {
   stroke: #fff;

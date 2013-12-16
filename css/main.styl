@@ -8,15 +8,19 @@ body, html
 	margin 0
 	padding 0
 	font-family monospace
-gs = 8px
+	text-align center
+	font-size 16px
 
+ex = (1/16)em
+gs = 8*ex
+c-red = #f59995
 .icon
-	background-color #f59995
+	background-color c-red
 	display inline-block
-	// padding 2*gs
 	border-radius 50%
 	rect 15*gs
 	position: relative
+	margin-top 200px
 
 	.svg-icon
 		rect 50%
@@ -25,6 +29,14 @@ gs = 8px
 		top 50%
 		margin-left -25%
 		margin-top -25%
+
+	.text
+		margin-top 4*gs
+		color c-red
+		border-radius 50%
+		display inline-block
+		padding (gs/2)
+		font-size 1.5*gs
 
 .svg-icon
 	stroke white
@@ -37,3 +49,4 @@ svg
 		stroke-linejoin round
 		stroke-linecap 	round
 		stroke-width: 1px
+
