@@ -9,18 +9,31 @@ body, html
 	padding 0
 	font-family monospace
 gs = 8px
+
 .icon
 	background-color #f59995
-	rect 10*gs
-	stroke white
-	padding 2*gs
+	display inline-block
+	// padding 2*gs
 	border-radius 50%
+	rect 15*gs
+	position: relative
+
+	.svg-icon
+		rect 50%
+		position: absolute
+		left 50%
+		top 50%
+		margin-left -25%
+		margin-top -25%
+
+.svg-icon
+	stroke white
 
 	svg
 		rect 100%
 
 svg
 	path, line, polyline
-		// stroke-linejoin round
-		// stroke-linecap 	round
+		stroke-linejoin round
+		stroke-linecap 	round
 		stroke-width: 1px

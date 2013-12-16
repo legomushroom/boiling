@@ -13,18 +13,32 @@ html {
 }
 .icon {
   background-color: #f59995;
-  width: 80px;
-  height: 80px;
-  stroke: #fff;
-  padding: 16px;
+  display: inline-block;
   border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  position: relative;
 }
-.icon svg {
+.icon .svg-icon {
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -25%;
+  margin-top: -25%;
+}
+.svg-icon {
+  stroke: #fff;
+}
+.svg-icon svg {
   width: 100%;
   height: 100%;
 }
 svg path,
 svg line,
 svg polyline {
+  stroke-linejoin: round;
+  stroke-linecap: round;
   stroke-width: 1px;
 }
