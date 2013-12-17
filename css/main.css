@@ -13,6 +13,16 @@ html {
   text-align: center;
   font-size: 16px;
 }
+.smoke {
+  width: 5em;
+  height: 5em;
+  position: absolute;
+  top: -3.25em;
+  left: -55%;
+}
+.smoke path {
+  stroke: #fff;
+}
 .icon {
   background-color: #f59995;
   display: inline-block;
