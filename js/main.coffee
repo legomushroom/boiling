@@ -8,20 +8,7 @@
                 window.setTimeout(callback, 1000 / 60);
               };
     })();
-`
-
-
-
-# path = document.querySelector('.smoke path');
-# length = path.getTotalLength();
-# path.style.transition = path.style.WebkitTransition = 'none';
-# path.style.strokeDasharray = length/4 + ' ' + length/4;
-# path.style.strokeDashoffset = length/4;
-# path.getBoundingClientRect();
-# path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset 1s ease-in-out';
-# path.style.strokeDashoffset = '0';
-
-
+` 
 
 window.boiling = 
 	init:->
@@ -99,7 +86,6 @@ window.boiling =
 												9,#{@top-1}
 
 												"""
-
 
 	animate:->
 		@animateFire()
