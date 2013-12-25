@@ -10,7 +10,7 @@
     })();
 ` 
 
-window.boiling = 
+window.pan = 
 	init:->
 		@fire 	= @$ 'fire-boiling'
 		@cover 	= @$ 'cover-boiling'
@@ -95,15 +95,13 @@ window.boiling =
 		@animate()
 		requestAnimFrame(@animationLoop.bind(@))
 
-boiling.init()
+pan.init()
 
 setTimeout =>
 	i=0
 	setInterval =>
-		boiling.setProgress ++i
-
+		pan.setProgress ++i
 	, 100
-
 , 3000
 
 

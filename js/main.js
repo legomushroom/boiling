@@ -13,7 +13,7 @@
 ;
   var _this = this;
 
-  window.boiling = {
+  window.pan = {
     init: function() {
       this.fire = this.$('fire-boiling');
       this.cover = this.$('cover-boiling');
@@ -97,14 +97,14 @@
     }
   };
 
-  boiling.init();
+  pan.init();
 
   setTimeout(function() {
     var i;
 
     i = 0;
     return setInterval(function() {
-      return boiling.setProgress(++i);
+      return pan.setProgress(++i);
     }, 100);
   }, 3000);
 

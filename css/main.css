@@ -1,16 +1,4 @@
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-body,
-html {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: monospace;
-  text-align: center;
+body{
   font-size: 16px;
 }
 .icon {
@@ -21,6 +9,8 @@ html {
   height: 7.5em;
   position: relative;
   margin-top: 200px;
+  font-family: monospace;
+  text-align: center;
 }
 .icon .svg-icon {
   width: 50%;
@@ -46,8 +36,8 @@ html {
   width: 100%;
   height: 100%;
 }
-svg path,
-svg line,
-svg polyline {
+.svg-icon svg path,
+.svg-icon svg line,
+.svg-icon svg polyline {
   stroke-width: 1px;
 }
